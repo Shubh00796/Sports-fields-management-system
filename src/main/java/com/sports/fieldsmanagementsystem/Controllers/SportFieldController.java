@@ -2,14 +2,12 @@ package com.sports.fieldsmanagementsystem.Controllers;
 
 import com.sports.fieldsmanagementsystem.DTOs.SportFieldDTO;
 import com.sports.fieldsmanagementsystem.Service.SportFieldService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -42,7 +40,7 @@ public class SportFieldController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<SportFieldDTO> updateSportField(@PathVariable Long id, @RequestBody @Valid SportFieldDTO sportFieldDTO) {
+    public ResponseEntity<SportFieldDTO> updateSportField(@PathVariable Long id, @RequestBody SportFieldDTO sportFieldDTO) {
         sportFieldDTO.setId(id); // Set the ID to match the path variable
         SportFieldDTO updatedSportField = sportFieldService.updateSportField(sportFieldDTO);
         return ResponseEntity.ok(updatedSportField);

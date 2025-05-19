@@ -2,14 +2,12 @@ package com.sports.fieldsmanagementsystem.Controllers;
 
 import com.sports.fieldsmanagementsystem.DTOs.BookingDTO;
 import com.sports.fieldsmanagementsystem.Service.BookingService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -35,16 +33,14 @@ public class BookingController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<BookingDTO> createBooking(@RequestBody @Valid BookingDTO bookingDTO) {
+    public ResponseEntity<BookingDTO> createBooking(@RequestBody  BookingDTO bookingDTO) {
         BookingDTO booking = bookingService.createBooking(bookingDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(booking);
-
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<BookingDTO> updateBooking(@PathVariable Long id, @RequestBody @Valid BookingDTO bookingDTO) {
+    public ResponseEntity<BookingDTO> updateBooking(@PathVariable Long id, @RequestBody BookingDTO bookingDTO) {
         bookingDTO.setId(id);
         BookingDTO updatedBooking = bookingService.updateBooking(bookingDTO);
         return ResponseEntity.ok(updatedBooking);
@@ -81,7 +77,7 @@ public class BookingController {
 
     @PostMapping("/book-outdoor-field")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<BookingDTO> bookOutdoorField(@RequestBody @Valid BookingDTO bookingDTO) {
+    public ResponseEntity<BookingDTO> bookOutdoorField(@RequestBody BookingDTO bookingDTO) {
         BookingDTO bookedField = bookingService.bookOutdoorField(bookingDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(bookedField);
     }

@@ -56,7 +56,8 @@ public class BookingServiceImpl implements BookingService {
 
     private void checkForTheAvaliableFields(BookingDTO bookingDTO) {
         LocalDate bookingDate = bookingDTO.getBookingDate();
-        if (sportFieldService.getAvailableSportFields(bookingDate) == null) {
+        if (sportFieldService.getAvailableSportFields(bookingDate) == null ||
+                sportFieldService.getAvailableSportFields(bookingDate).isEmpty()) {
             throw new ResourceNotFoundException("The selected sport field is not available on the specified date.");
         }
     }
