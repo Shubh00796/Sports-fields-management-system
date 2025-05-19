@@ -12,10 +12,16 @@ import java.util.Date;
 @Builder
 public class BookingDTO {
     private Long id;
+
     private String clientName;
+
     private String clientPhone;
+
     private String clientEmail;
+
     private Long sportFieldId;
+
     private Date bookingDate;
+
     private Integer bookingHour;
 }

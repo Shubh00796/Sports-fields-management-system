@@ -2,6 +2,7 @@ package com.sports.fieldsmanagementsystem.Service;
 
 import com.sports.fieldsmanagementsystem.DTOs.SportFieldDTO;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -22,8 +23,7 @@ public interface SportFieldService {
 
     List<SportFieldDTO> getSportFieldsByLocation(String location);
 
-    List<SportFieldDTO> getAvailableSportFields(Date date);
+    List<SportFieldDTO> getAvailableSportFields(LocalDate bookingDate);
 
-    SportFieldDTO bookSportField(Long sportFieldId, Date date, Integer hour);
 
 }

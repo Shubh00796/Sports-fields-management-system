@@ -1,58 +1,53 @@
 package com.sports.fieldsmanagementsystem.ReposiotryServices;
 
-import com.sports.fieldsmanagementsystem.DTOs.SportFieldDTO;
-import com.sports.fieldsmanagementsystem.Service.SportFieldService;
+import com.sports.fieldsmanagementsystem.Domain.SportField;
+import com.sports.fieldsmanagementsystem.Exceptions.ResourceNotFoundException;
+import com.sports.fieldsmanagementsystem.Reposiotry.SportFieldRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class SportFieldReposiotryService implements SportFieldService {
-    @Override
-    public List<SportFieldDTO> getAllSportFields() {
-        return List.of();
+public class SportFieldReposiotryService {
+    private final SportFieldRepository sportFieldRepository;
+
+    public List<SportField> getAllSportFields() {
+        return sportFieldRepository.findAll();
     }
 
-    @Override
-    public SportFieldDTO getSportFieldById(Long id) {
-        return null;
+    public SportField getSportFieldById(Long id) {
+        return sportFieldRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Id with given filed not found" + id));
     }
 
-    @Override
-    public SportFieldDTO createSportField(SportFieldDTO sportFieldDTO) {
-        return null;
+    public SportField createSportField(SportField sportField) {
+        return sportFieldRepository.save(sportField);
     }
 
-    @Override
-    public SportFieldDTO updateSportField(SportFieldDTO sportFieldDTO) {
-        return null;
+    public SportField updateSportField(SportField sportField) {
+        return sportFieldRepository.save(sportField);
     }
 
-    @Override
     public void deleteSportField(Long id) {
+        sportFieldRepository.deleteById(id);
 
     }
 
-    @Override
-    public List<SportFieldDTO> getSportFieldsByType(String type) {
-        return List.of();
+    public List<SportField> getSportFieldsByType(String type) {
+        return sportFieldRepository.findByType(type);
     }
 
-    @Override
-    public List<SportFieldDTO> getSportFieldsByLocation(String location) {
-        return List.of();
+    public List<SportField> getSportFieldsByLocation(String location) {
+        return sportFieldRepository.findByLocation(location);
     }
 
-    @Override
-    public List<SportFieldDTO> getAvailableSportFields(Date date) {
-        return List.of();
+    public List<SportField> getAvailableSportFields(LocalDate booLocalDate) {
+        return sportFieldRepository.getAvailableSportFields(booLocalDate);
     }
 
-    @Override
-    public SportFieldDTO bookSportField(Long sportFieldId, Date date, Integer hour) {
-        return null;
-    }
+
 }

@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface BookingRepository extends JpaRepository<Booking, Long> {
+public interface BookingsRepository extends JpaRepository<Booking, Long> {
 
     List<Booking> findBySportFieldId(Long sportFieldId);
 
