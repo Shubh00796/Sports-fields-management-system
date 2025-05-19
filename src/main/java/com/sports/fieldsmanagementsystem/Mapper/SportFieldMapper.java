@@ -8,10 +8,8 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface SportFieldMapper {
-    @Mapping(target = "location", source = "location")
     SportFieldDTO toDto(SportField sportField);
 
-    @Mapping(target = "location", source = "location")
     SportField toEntity(SportFieldDTO sportFieldDTO);
 
     void updateEntityFromDto(SportFieldDTO sportFieldDTO, @MappingTarget SportField sportField);

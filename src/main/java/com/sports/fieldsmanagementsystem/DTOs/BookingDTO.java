@@ -1,10 +1,11 @@
 package com.sports.fieldsmanagementsystem.DTOs;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -21,7 +22,10 @@ public class BookingDTO {
 
     private Long sportFieldId;
 
-    private Date bookingDate;
+    private LocalDate bookingDate;
 
     private Integer bookingHour;
+
+    private double lat;
+    private double lon;
 }

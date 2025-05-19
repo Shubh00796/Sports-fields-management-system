@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface BookingsRepository extends JpaRepository<Booking, Long> {
 
     List<Booking> findBySportFieldId(Long sportFieldId);
 
-    List<Booking> findByBookingDate(Date bookingDate);
+    List<Booking> findByBookingDate(LocalDate bookingDate);
 
     List<Booking> findByClientPhone(String clientPhone);
 

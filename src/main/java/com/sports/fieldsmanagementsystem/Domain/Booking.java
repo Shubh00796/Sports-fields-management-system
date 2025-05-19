@@ -13,6 +13,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -40,9 +41,8 @@ public class Booking {
     @NotNull(message = "Sport field ID is required")
     private Long sportFieldId;
 
-    @NotNull(message = "Booking date is required")
-    @PastOrPresent(message = "Booking date must be past or present")
-    private Date bookingDate;
+
+    private LocalDate bookingDate;
 
     @NotNull(message = "Booking hour is required")
     @Pattern(regexp = "^(0[0-9]|1[0-9]|2[0-3])$", message = "Booking hour must be between 00 and 23")

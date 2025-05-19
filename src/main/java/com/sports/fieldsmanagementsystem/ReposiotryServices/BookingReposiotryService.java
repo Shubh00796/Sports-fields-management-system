@@ -6,6 +6,7 @@ import com.sports.fieldsmanagementsystem.Reposiotry.BookingsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class BookingReposiotryService {
         return bookingsRepository.findBySportFieldId(sportFieldId);
     }
 
-    public List<Booking> getBookingsByDate(Date date) {
+    public List<Booking> getBookingsByDate(LocalDate date) {
         return bookingsRepository.findByBookingDate(date);
     }
 

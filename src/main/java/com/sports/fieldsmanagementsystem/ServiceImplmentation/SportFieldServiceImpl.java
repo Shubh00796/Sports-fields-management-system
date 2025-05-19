@@ -41,6 +41,7 @@ public class SportFieldServiceImpl implements SportFieldService {
 
     @Override
     public SportFieldDTO createSportField(SportFieldDTO sportFieldDTO) {
+
         SportField sportField = mapper.toEntity(sportFieldDTO);
 //        validateSportFields(sportField);
         SportField serviceSportField = sportFieldReposiotryService.createSportField(sportField);
@@ -86,6 +87,9 @@ public class SportFieldServiceImpl implements SportFieldService {
                 .map(mapper::toDto)
                 .collect(Collectors.toList());
     }
+
+
+
 
 //    private void validateSportFields(SportField sportField) {
 //        Set<ConstraintViolation<SportField>> violations = validator.validate(sportField);
