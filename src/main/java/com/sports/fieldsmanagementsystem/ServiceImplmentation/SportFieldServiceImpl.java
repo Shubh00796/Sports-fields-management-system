@@ -79,8 +79,9 @@ public class SportFieldServiceImpl implements SportFieldService {
                 .collect(Collectors.collectingAndThen(Collectors.toList(), Collections::unmodifiableList));
     }
 
-    public List<SportFieldDTO> getAvailableSportFields(LocalDate bookingDate) {
-        List<SportField> availableFields = sportFieldReposiotryService.getAvailableSportFields(bookingDate);
+    @Override
+    public List<SportFieldDTO> getAvailableSportFields(LocalDate date) {
+        List<SportField> availableFields = sportFieldReposiotryService.getAvailableSportFields(date);
         return availableFields.stream()
                 .map(mapper::toDto)
                 .collect(Collectors.toList());

@@ -69,10 +69,11 @@ public class SportFieldController {
         return ResponseEntity.ok(sportFields);
     }
 
+
+
     @GetMapping("/available/{date}")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<SportFieldDTO>> getAvailableSportFields(@PathVariable LocalDate bookingDate) {
-        List<SportFieldDTO> sportFields = sportFieldService.getAvailableSportFields(bookingDate);
-        return ResponseEntity.ok(sportFields);
+    public ResponseEntity<List<SportFieldDTO>> getAvailableSportFields(@PathVariable LocalDate date) {
+        List<SportFieldDTO> availableFields = sportFieldService.getAvailableSportFields(date);
+        return ResponseEntity.ok(availableFields);
     }
 }
