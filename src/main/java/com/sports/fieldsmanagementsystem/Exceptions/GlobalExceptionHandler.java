@@ -21,6 +21,22 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
 
+    public ResponseEntity<?> handleRestaurantNotFound(RestaurantNotFoundException ex) {
+        Map<String, Object> errorDetails = new HashMap<>();
+        errorDetails.put("timestamp", LocalDateTime.now());
+        errorDetails.put("message", ex.getMessage());
+        errorDetails.put("status", HttpStatus.NOT_FOUND.value());
+        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+
+    public ResponseEntity<?> handleRestaurantValadation(RestaurantValidationException ex) {
+        Map<String, Object> errorDetails = new HashMap<>();
+        errorDetails.put("timestamp", LocalDateTime.now());
+        errorDetails.put("message", ex.getMessage());
+        errorDetails.put("status", HttpStatus.NOT_FOUND.value());
+        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(UnauthorizedException.class)
     public ResponseEntity<String> handleUnauthorized(UnauthorizedException ex) {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(ex.getMessage());
