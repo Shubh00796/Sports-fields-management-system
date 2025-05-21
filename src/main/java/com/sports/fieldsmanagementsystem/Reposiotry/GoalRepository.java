@@ -9,9 +9,10 @@ import java.util.List;
 
 @Repository
 public interface GoalRepository extends JpaRepository<Goal, Long> {
-    List<Goal> findByDeadline(LocalDate deadline);
-    Goal findByTitle(String title);
+
     List<Goal> findByUserId(Long userId);
+
+    List<Goal> findByTitle(String title);
 
 
 }
