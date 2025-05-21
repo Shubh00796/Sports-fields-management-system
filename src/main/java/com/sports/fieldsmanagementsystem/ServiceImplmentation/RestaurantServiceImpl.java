@@ -9,6 +9,7 @@ import com.sports.fieldsmanagementsystem.Service.RestaurantService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -22,11 +23,14 @@ public class RestaurantServiceImpl implements RestaurantService {
     private final RestaurantMapper mapper;
 
     @Override
+    @Transactional
     public RestaurantDTO createRestaurant(RestaurantDTO restaurantDTO) {
         validateRestaurantDTO(restaurantDTO);
         genrateRandonUUIDIfIdIsNull(restaurantDTO);
         Restaurant restaurant = mapper.toEntity(restaurantDTO);
-        return mapper.toDto(repositoryService.createRestaurant(restaurant));
+        Restaurant repositoryServiceRestaurant = repositoryService.createRestaurant(restaurant);
+        log.info("api info=> ", repositoryServiceRestaurant);
+        return mapper.toDto(repositoryServiceRestaurant);
     }
 
     private void validateRestaurantDTO(RestaurantDTO restaurantDTO) {
@@ -46,6 +50,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
+    @Transactional
     public RestaurantDTO getRestaurantById(String id) {
         Restaurant serviceRestaurantById = repositoryService.getRestaurantById(id);
 
@@ -54,6 +59,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
+    @Transactional
     public List<RestaurantDTO> getAllRestaurants() {
         return repositoryService.getAllRestaurantsIncludingDeleted().stream()
                 .map(mapper::toDto)
@@ -61,10 +67,13 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public RestaurantDTO updateRestaurant(String id, RestaurantDTO restaurantDTO) {
-        Restaurant existingRestaurant = repositoryService.getRestaurantById(id);
-        mapper.updateEntityFromDto(restaurantDTO, existingRestaurant);
-        return mapper.toDto(repositoryService.updateRestaurant(id, existingRestaurant));
+    @Transactional
+    public RestaurantDTO updateRestaurant(RestaurantDTO restaurantDTO) {
+        Restaurant existingRestaurant = repositoryService.getRestaurantById(restaurantDTO.getId());
+        mapper.updateEntityFromDto(existingRestaurant, restaurantDTO);
+        existingRestaurant.setVersion(existingRestaurant.getVersion() + 1);
+
+        return mapper.toDto(repositoryService.updateRestaurant(existingRestaurant));
     }
 
     @Override
@@ -73,6 +82,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
+    @Transactional
     public List<RestaurantDTO> getRestaurantsByCuisine(String cuisine) {
         return repositoryService.getRestaurantsByCuisine(cuisine).stream()
                 .map(mapper::toDto)

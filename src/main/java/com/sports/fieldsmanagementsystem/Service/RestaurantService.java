@@ -12,7 +12,7 @@ public interface RestaurantService {
 
     List<RestaurantDTO> getAllRestaurants();
 
-    RestaurantDTO updateRestaurant(String id, RestaurantDTO restaurantDTO);
+    RestaurantDTO updateRestaurant( RestaurantDTO restaurantDTO);
 
     void softDeleteRestaurant(String id); // New method for soft deletion
 

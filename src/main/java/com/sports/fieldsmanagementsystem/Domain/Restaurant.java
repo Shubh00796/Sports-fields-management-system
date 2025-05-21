@@ -35,5 +35,5 @@ public class Restaurant {
 
     @Version
     @Column(columnDefinition = "INTEGER DEFAULT 0")
-    private Integer version;
+    private Integer version = 0; // Initialize with a default value
 }

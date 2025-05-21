@@ -33,7 +33,7 @@ public class RestaurantRepositoryService {
         return repository.findAll();
     }
 
-    public Restaurant updateRestaurant(String id, Restaurant restaurant) {
+    public Restaurant updateRestaurant(Restaurant restaurant) {
         return repository.save(restaurant);
     }
 
@@ -48,4 +48,8 @@ public class RestaurantRepositoryService {
     public List<Restaurant> getAllRestaurantsIncludingDeleted() {
         return repository.findAllIncludingDeleted();
     }
+
+
+
+
 }

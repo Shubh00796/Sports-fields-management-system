@@ -22,4 +22,5 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, String> 
     @Modifying
     @Query("UPDATE Restaurant r SET r.deleted = TRUE, r.deletedAt = CURRENT_TIMESTAMP WHERE r.id = :id")
     void softDeleteById(@Param("id") String id);
+
 }
