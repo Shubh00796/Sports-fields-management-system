@@ -12,7 +12,7 @@ public interface GoalService {
 
     GoalDto createGoal(GoalDto goalDto);
 
-    GoalDto updateGoal(Long id, GoalDto goalDto);
+    GoalDto updateGoal(GoalDto goalDto);
 
     void deleteGoal(Long id);
 

@@ -1,18 +1,19 @@
 package com.sports.fieldsmanagementsystem.Mapper;
 
 
-import com.sports.fieldsmanagementsystem.Domain.Goal;
 import com.sports.fieldsmanagementsystem.DTOs.GoalDto;
+import com.sports.fieldsmanagementsystem.Domain.Goal;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface GoalMapper {
 
-    GoalDto toDto(Goal goal);
 
     Goal toEntity(GoalDto goalDto);
+
+
+    GoalDto toDto(Goal goal);
 
     void updateEntityFromDto(GoalDto goalDto, @MappingTarget Goal goal);
 }
